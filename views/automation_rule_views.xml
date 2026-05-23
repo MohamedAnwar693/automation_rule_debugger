@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =========================================================
+         Extend base.automation Form View
+    ========================================================== -->
+    <record id="view_base_automation_form_inherit_debugger"
+            model="ir.ui.view">
+
+        <field name="name">
+            base.automation.form.inherit.debugger
+        </field>
+
+        <field name="model">base.automation</field>
+
+        <field name="inherit_id"
+               ref="base_automation.view_base_automation_form"/>
+
+        <field name="priority">20</field>
+
+        <field name="arch" type="xml">
+
+            <!-- =================================================
+                 Smart Button
+            ================================================== -->
+            <xpath expr="//div[contains(@class, 'oe_button_box')]"
+                   position="inside">
+
+                <button name="action_view_debug_logs"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-bug"
+                        invisible="debug_log_count == 0">
+
+                    <field name="debug_log_count"
+                           widget="statinfo"
+                           string="Debug Logs"/>
+
+                </button>
+
+            </xpath>
+
+            <!-- =================================================
+                 Add buttons inside sheet
+            ================================================== -->
+            <xpath expr="//sheet"
+                   position="inside">
+
+                <div class="oe_button_box" name="debugger_buttons">
+
+                    <button name="action_open_debugger"
+                            string="Test Rule"
+                            type="object"
+                            class="btn btn-secondary"
+                            invisible="id == False"/>
+
+                    <button name="action_health_check"
+                            string="Health Check"
+                            type="object"
+                            class="btn btn-secondary"
+                            invisible="id == False"/>
+
+                </div>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+
+    <!-- =========================================================
+         Extend base.automation List View
+    ========================================================== -->
+    <record id="view_base_automation_list_inherit_debugger"
+            model="ir.ui.view">
+
+        <field name="name">
+            base.automation.list.inherit.debugger
+        </field>
+
+        <field name="model">base.automation</field>
+
+        <field name="inherit_id"
+               ref="base_automation.view_base_automation_tree"/>
+
+        <field name="priority">20</field>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//list/field[last()]"
+                   position="after">
+
+                <field name="last_debug_state"
+                       string="Last Test"
+                       widget="badge"
+                       optional="show"/>
+
+                <field name="debug_log_count"
+                       string="# Logs"
+                       optional="show"/>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>

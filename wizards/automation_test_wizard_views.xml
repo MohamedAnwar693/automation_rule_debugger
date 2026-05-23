@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_automation_test_wizard_form" model="ir.ui.view">
+        <field name="name">automation.test.wizard.form</field>
+        <field name="model">automation.test.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Test Automation Rule">
+                <sheet>
+                    <div class="oe_title">
+                        <h2>🧪 Automation Rule Debugger</h2>
+                    </div>
+
+                    <!-- Rule Info -->
+                    <group string="Rule">
+                        <field name="rule_id" readonly="1"/>
+                        <field name="model_id" readonly="1"/>
+                    </group>
+
+                    <!-- Rule Summary -->
+                    <group string="Rule Summary">
+                        <field name="rule_summary" nolabel="1" readonly="1" widget="html"/>
+                    </group>
+
+                    <!-- Health Issues -->
+                    <group string="Health Check" invisible="not has_health_issues">
+                        <div class="alert alert-warning" role="alert">
+                            <field name="health_issues" nolabel="1" readonly="1" widget="text"/>
+                        </div>
+                    </group>
+                    <group string="Health Check" invisible="has_health_issues">
+                        <div class="alert alert-success" role="alert">
+                            <field name="health_issues" nolabel="1" readonly="1" widget="text"/>
+                        </div>
+                    </group>
+
+                    <!-- Test Config -->
+                    <group string="Test Configuration">
+                        <field name="record_id_int"
+                               string="Record ID to Test"
+                               help="Enter the numeric ID of an existing record of the model above."/>
+                        <field name="record_preview" readonly="1" string="Record Found"/>
+                        <field name="execution_mode"/>
+                    </group>
+
+                    <!-- Warning for real mode -->
+                    <div class="alert alert-danger" role="alert"
+                         invisible="execution_mode != 'real'">
+                        <strong>⚠️ Warning:</strong> Real Execution mode will apply actual changes
+                        to the record. Use Simulation mode first to verify behaviour.
+                    </div>
+
+                </sheet>
+                <footer>
+                    <button name="action_run_test"
+                            string="▶ Run Test"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Standalone action to open wizard -->
+    <record id="action_automation_test_wizard" model="ir.actions.act_window">
+        <field name="name">Test Automation Rule</field>
+        <field name="res_model">automation.test.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_automation_test_wizard_form"/>
+    </record>
+
+</odoo>

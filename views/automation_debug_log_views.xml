@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =========================================================
+         automation.debug.log — List View
+    ========================================================== -->
+    <record id="view_automation_debug_log_list" model="ir.ui.view">
+        <field name="name">automation.debug.log.list</field>
+        <field name="model">automation.debug.log</field>
+        <field name="arch" type="xml">
+            <list string="Debug Logs">
+
+                <field name="create_date" string="Date"/>
+                <field name="rule_id"/>
+                <field name="model_id"/>
+                <field name="record_id"/>
+                <field name="record_name"/>
+                <field name="trigger"/>
+                <field name="execution_mode"/>
+
+                <field name="state" widget="badge"/>
+
+                <field name="duration_ms" string="Duration (ms)"/>
+                <field name="actions_count" string="Actions"/>
+                <field name="user_id"/>
+
+            </list>
+        </field>
+    </record>
+
+
+    <!-- =========================================================
+         automation.debug.log — Form View
+    ========================================================== -->
+    <record id="view_automation_debug_log_form" model="ir.ui.view">
+        <field name="name">automation.debug.log.form</field>
+        <field name="model">automation.debug.log</field>
+        <field name="arch" type="xml">
+
+            <form string="Debug Log" create="false" edit="false">
+
+                <header>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="skipped,success,partial,failed"/>
+
+                    <button name="action_rerun_simulation"
+                            string="Re-run Simulation"
+                            type="object"
+                            class="btn-secondary"
+                            icon="fa-refresh"/>
+
+                    <button name="action_view_record"
+                            string="Open Record"
+                            type="object"
+                            class="btn-secondary"
+                            icon="fa-external-link"
+                            invisible="record_id == False"/>
+
+                </header>
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="display_name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+
+                        <group string="Rule Info">
+                            <field name="rule_id"/>
+                            <field name="model_id"/>
+                            <field name="trigger"/>
+                            <field name="execution_mode"/>
+                        </group>
+
+                        <group string="Execution Info">
+                            <field name="record_id"/>
+                            <field name="record_name"/>
+                            <field name="user_id"/>
+                            <field name="duration_ms"/>
+                            <field name="actions_count"/>
+                            <field name="actions_success"/>
+                        </group>
+
+                    </group>
+
+                    <group string="Domain Evaluation">
+                        <field name="domain_result"
+                               widget="boolean_toggle"
+                               readonly="1"/>
+
+                        <field name="domain_evaluated"
+                               readonly="1"/>
+                    </group>
+
+                    <!-- Summary -->
+                    <group string="Summary" invisible="summary == False">
+                        <field name="summary"
+                               readonly="1"
+                               nolabel="1"/>
+                    </group>
+
+                    <!-- Error -->
+                    <group string="Error" invisible="error_message == False">
+                        <field name="error_message"
+                               readonly="1"
+                               nolabel="1"
+                               widget="text"/>
+                    </group>
+
+                    <!-- Suggestions -->
+                    <group string="Suggestions"
+                           invisible="suggestions == False">
+
+                        <field name="suggestions"
+                               readonly="1"
+                               nolabel="1"
+                               widget="text"/>
+
+                    </group>
+
+                    <!-- Execution Steps -->
+                    <notebook>
+
+                        <page string="Execution Steps" name="steps">
+
+                            <field name="log_lines"
+                                   readonly="1"
+                                   nolabel="1">
+
+                                <list>
+
+                                    <field name="sequence" string="#"/>
+
+                                    <field name="step_type"
+                                           widget="badge"/>
+
+                                    <field name="state"
+                                           widget="badge"/>
+
+                                    <field name="title"/>
+
+                                    <field name="duration_ms"
+                                           string="ms"/>
+
+                                    <field name="detail"
+                                           optional="show"/>
+
+                                    <field name="technical_info"
+                                           optional="hide"/>
+
+                                </list>
+
+                            </field>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+
+    <!-- =========================================================
+         automation.debug.log — Search View
+    ========================================================== -->
+    <record id="view_automation_debug_log_search" model="ir.ui.view">
+        <field name="name">automation.debug.log.search</field>
+        <field name="model">automation.debug.log</field>
+
+        <field name="arch" type="xml">
+            <search string="Search Debug Logs">
+
+                <field name="create_date"/>
+
+            </search>
+        </field>
+    </record>
+    <!-- =========================================================
+         Action — All Debug Logs
+    ========================================================== -->
+    <record id="action_automation_debug_log"
+            model="ir.actions.act_window">
+
+        <field name="name">Automation Debug Logs</field>
+
+        <field name="res_model">automation.debug.log</field>
+
+        <field name="view_mode">list,form</field>
+
+        <field name="view_id"
+               ref="view_automation_debug_log_list"/>
+
+        <field name="search_view_id"
+               ref="view_automation_debug_log_search"/>
+
+        <field name="context">{}</field>
+
+        <field name="help" type="html">
+
+            <p class="o_view_nocontent_smiling_face">
+                No debug logs yet
+            </p>
+
+            <p>
+                Open an Automation Rule and click
+                <strong>Test Rule</strong>
+                to start simulating and debugging.
+            </p>
+
+        </field>
+
+    </record>
+
+</odoo>

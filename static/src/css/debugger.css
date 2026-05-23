@@ -1,0 +1,47 @@
+/* Automation Rule Debugger — Custom Styles */
+
+/* Step type badges in log lines */
+.o_automation_debug_step_success {
+    color: #28a745;
+}
+
+.o_automation_debug_step_failed {
+    color: #dc3545;
+}
+
+.o_automation_debug_step_warning {
+    color: #ffc107;
+}
+
+.o_automation_debug_step_info {
+    color: #17a2b8;
+}
+
+/* Debug log form header status highlight */
+.o_automation_debug_header_success {
+    background-color: #d4edda;
+}
+
+.o_automation_debug_header_failed {
+    background-color: #f8d7da;
+}
+
+/* Wizard health check panels */
+.o_automation_health_ok {
+    border-left: 4px solid #28a745;
+    padding-left: 8px;
+}
+
+.o_automation_health_warn {
+    border-left: 4px solid #ffc107;
+    padding-left: 8px;
+}
+
+/* Log list colored rows */
+.o_list_record_selector + .o_data_row.success_row td {
+    background-color: rgba(40, 167, 69, 0.08);
+}
+
+.o_list_record_selector + .o_data_row.failed_row td {
+    background-color: rgba(220, 53, 69, 0.08);
+}

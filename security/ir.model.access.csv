@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_automation_debug_log_admin,automation.debug.log admin,model_automation_debug_log,base.group_system,1,1,1,1
+access_automation_debug_log_user,automation.debug.log user,model_automation_debug_log,base.group_user,1,0,0,0
+access_automation_debug_log_line_admin,automation.debug.log.line admin,model_automation_debug_log_line,base.group_system,1,1,1,1
+access_automation_debug_log_line_user,automation.debug.log.line user,model_automation_debug_log_line,base.group_user,1,0,0,0
+access_automation_test_wizard_admin,automation.test.wizard admin,model_automation_test_wizard,base.group_system,1,1,1,1
+access_automation_test_wizard_user,automation.test.wizard user,model_automation_test_wizard,base.group_user,1,1,1,1

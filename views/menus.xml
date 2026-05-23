@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =========================================================
+         SAFE ROOT MENU (NO PARENT = ALWAYS WORKS)
+    ========================================================== -->
+    <menuitem
+        id="menu_automation_debugger_root"
+        name="Automation Debugger"
+        sequence="100"
+        groups="base.group_system"
+        action="action_automation_debug_log"/>
+
+
+    <!-- =========================================================
+         TECHNICAL MENU (OPTIONAL - ONLY IF EXISTS)
+    ========================================================== -->
+    <menuitem
+        id="menu_automation_debugger_technical"
+        name="Automation Debug Logs"
+        parent="base.menu_administration"
+        sequence="95"
+        groups="base.group_system"
+        action="action_automation_debug_log"/>
+
+</odoo>
