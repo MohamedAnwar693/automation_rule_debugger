@@ -312,7 +312,3 @@ For issues, feature requests, or contributions, please open a ticket or pull req
 
 ---
 
-## License
-
-This module is distributed under the **GNU Lesser General Public License v3 (LGPL-3)**.
-See [https://www.gnu.org/licenses/lgpl-3.0.html](https://www.gnu.org/licenses/lgpl-3.0.html) for the full license text.
