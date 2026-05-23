@@ -2,7 +2,6 @@
 
 **Odoo Module — Version 19.0.1.0.0**
 **Author:** Mohamed Anwar
-**License:** LGPL-3
 **Category:** Technical
 
 ---
